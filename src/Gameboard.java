@@ -4,9 +4,16 @@ public class Gameboard {
    
     //This array multidimensional represents the spaces on the gameboard.
     //Space is a separeted class with attributes and methods.
-    static Space[][] spaces;
+    private static Space[][] spaces;
+
+    //Total of spaces of the board
     private static int maxSize;
+
+    //Quantity of spaces N in our board NxN
     private static int length;
+
+    //This array will contain the coordinates of the bombs
+    private Bomb[] bombs = new Bomb[10];
 
     Gameboard(Difficulty dificulty){
 
@@ -27,37 +34,54 @@ public class Gameboard {
             maxSize = 196;
             length = 14;
         }
+
+        //Initializing the spaces in the board
+        for(int i = 0; i < length; i++){
+            for(int j = 0 ; j < length; j++){
+                spaces[i][j] = new Space();;
+            }
+        }
     }
-    int[] bombsPositions = new int[10];
 
     public void generateBomb(){
-        Random bombGenerator = new Random();
+        Random random = new Random();
         
         for(int i = 0; i < 10; i++){
-            bombsPositions[i] = bombGenerator.nextInt(0, maxSize-1);
+            bombs[i] = new Bomb((random.nextInt(0, maxSize-1)),(random.nextInt(0, maxSize-1)));
         }
 
+        //Checking if we have two or more bombs in the same position (x,y), if yes, we change the coordinates 
         for(int i = 1; i < 10; i++){
             for(int j = 0; j < i; j++){
-                if(bombsPositions[j] == bombsPositions[i]){
-                    bombsPositions[j] = bombGenerator.nextInt(0, maxSize-1);
-                    i--;
+                if((bombs[i].getCoordinateX() == bombs[j].getCoordinateX()) && (bombs[i].getCoordinateY() == bombs[j].getCoordinateY())){
+                    bombs[j].setCoordinateX(random.nextInt(0, maxSize-1));
+                    bombs[j].setCoordinateY(random.nextInt(0, maxSize-1));
+                    i=-1;
                 }
             }
         }
+
     }
 
     public void printing(){
         //All spaces has 0 by default
         for(int i = 0; i < length; i++){
             for(int j = 0 ; j < length; j++){
-                System.out.println("space empty?" + spaces[i][j]);
+                System.out.println("space object: " + spaces[i][j]);
             }
         }
 
         for(int i = 0; i < 10; i++){
-            System.out.println("bomb: " + bombsPositions[i]);
+            System.out.printf("%d - bomb(%d,%d).\n", i, bombs[i].getCoordinateX(), bombs[i].getCoordinateY());
         }
 
     }
+
+    public void printBoardConsole(){
+        //white square -> \u25A1
+        //black square -> \u25A0
+
+
+    }
+
 }
