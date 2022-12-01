@@ -8,19 +8,19 @@ public class Bomb {
         this.coordinateY = coordinateY;
     }
 
-    public int getX() {
+    public int getCoordinateX() {
         return coordinateX;
     }
 
-    public int getY() {
+    public int getCoordinateY() {
         return coordinateY;
     }
 
-    public void setX(int x) {
+    public void setCoordinateX(int x) {
         this.coordinateX = x;
     }
 
-    public void setY(int y) {
+    public void setCoordinateY(int y) {
         this.coordinateY = y;
     }
 }
