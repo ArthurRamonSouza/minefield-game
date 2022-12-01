@@ -4,13 +4,13 @@ public class Gameboard {
    
     //This array multidimensional represents the spaces on the gameboard.
     //Space is a separeted class with attributes and methods.
-    private static Space[][] spaces;
+    private Space[][] spaces;
 
     //Total of spaces of the board
-    private static int maxSize;
+    private int maxSize;
 
     //Quantity of spaces N in our board NxN
-    private static int length;
+    private int length;
 
     //This array will contain the coordinates of the bombs
     private Bomb[] bombs = new Bomb[10];
@@ -63,23 +63,38 @@ public class Gameboard {
 
     }
 
+    /*
     public void printing(){
+        int count = 0;
         //All spaces has 0 by default
         for(int i = 0; i < length; i++){
             for(int j = 0 ; j < length; j++){
                 System.out.println("space object: " + spaces[i][j]);
+                count++;
             }
         }
-
+        System.out.println("space count:" + count++);
         for(int i = 0; i < 10; i++){
             System.out.printf("%d - bomb(%d,%d).\n", i, bombs[i].getCoordinateX(), bombs[i].getCoordinateY());
         }
-
+        
     }
+    */
 
     public void printBoardConsole(){
         //white square -> \u25A1
         //black square -> \u25A0
+        char unicode = '\u25A0';
+
+        for(int line = 0; line < length; line++){
+            for(int i = 0; i < length; i++){
+                if(!spaces[line][i].isHidden()){
+                    unicode = '\u25A1';
+                }
+                System.out.print(unicode + " ");
+            }
+            System.out.println();
+        }
 
 
     }
