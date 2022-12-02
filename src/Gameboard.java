@@ -79,7 +79,7 @@ public class Gameboard {
             int y = bombs[i].getCoordinateY();
             spaces[x][y].addBomb();
         }
-        
+       
     }
 
     /*
@@ -101,14 +101,13 @@ public class Gameboard {
     */
 
     public void printBoardConsole(){
-        //white square -> \u25A1
-        //black square -> \u25A0
+        //filled square -> \u25A0
         char unicode = '\u25A0';
 
         for(int line = 0; line < length; line++){
             for(int column = 0; column < length; column++){
-                if(!spaces[line][column].isHidden()){
-                    unicode = '\u25A1';
+                if(spaces[line][column].isHidden()){
+                    unicode = '\u25A0';
                 }
                 if(spaces[line][column].hasBomb()){
                     unicode = 'X';
