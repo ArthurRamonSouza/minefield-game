@@ -128,10 +128,21 @@ public class Gameboard {
             for(int column = 0; column < length; column++){
                 if(spaces[line][column].isHidden()){
                     unicode = '\u25A0';
+                }else{
+                    unicode = ' ';
                 }
                 System.out.print(unicode + " ");
             }
             System.out.println();
+        }
+    }
+
+    //Switch the property hidden if the space is hidden
+    public void showSpace(int x, int y){
+        if(spaces[x][y].isHidden() == true){
+            spaces[x][y].show();
+        } else{
+            System.out.println("This space is not hidden!");
         }
     }
 
