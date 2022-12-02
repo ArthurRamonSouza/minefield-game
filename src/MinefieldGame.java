@@ -6,6 +6,8 @@ public class MinefieldGame {
     public static void main(String[] args) {
 
         Gameboard gb = new Gameboard(Difficulty.EASY);
+        int[] coordinates = new int[2];
+        
         gb.generateBomb();
         //gb.printing();
 
@@ -30,32 +32,38 @@ public class MinefieldGame {
         */
        
         gb.printBoardConsole();
-        makeMove(gb);   
+        makeMove(gb, coordinates);
+        gb.showSpace(coordinates[0],coordinates[1]);
+        gb.printBoardConsole(); 
     }
 
-    //Getting the user input
-    public static void makeMove(Gameboard gb){
-        Scanner scan = new Scanner(System.in);
+    //Getting and storing the user input
+    public static int[] makeMove(Gameboard gb, int[] coordinates){
 
+        Scanner scan = new Scanner(System.in);
         System.out.print("Type the coordinate that you want to verify, like (x,y): ");
+
         try{
-            String coordinates = scan.nextLine();
+            String strgCoordinates = scan.nextLine();
 
             //Negative number? Not here!
-            if((coordinates.codePointAt(1) == '-') || (coordinates.codePointAt(3) == '-')){
+            if((strgCoordinates.codePointAt(1) == '-') || (strgCoordinates.codePointAt(3) == '-')){
                 System.out.printf("Invalid coordinate!\nThe coordinates cannot be a negative number.\n");
-                makeMove(gb);
+                makeMove(gb, coordinates);
             }
 
             //Parsing cahr to int
-            int coordX = Character.getNumericValue(coordinates.codePointAt(1));
-            int coordY = Character.getNumericValue(coordinates.codePointAt(3));
+            int coordX = Character.getNumericValue(strgCoordinates.codePointAt(1));
+            int coordY = Character.getNumericValue(strgCoordinates.codePointAt(3));
 
             //Possibles invalid coordinates will be treat here
-            if((coordX < (gb.getLength()-1) && coordX >= 0) || (coordY < (gb.getLength()-1)  && coordX >= 0)){
+            if(coordX > (gb.getLength()-1) || coordY > (gb.getLength()-1)){
                 System.out.printf("Invalid coordinate!\nThe minimum coordinate is (0,0) and the maximum is (%d,%d).\n", (gb.getLength()-1), (gb.getLength()-1));
-                makeMove(gb);
+                makeMove(gb, coordinates);
             }
+
+            coordinates[0] = coordX;
+            coordinates[1] = coordY;
 
         }catch(NoSuchElementException e1){
             e1.getMessage();
@@ -66,11 +74,12 @@ public class MinefieldGame {
         }catch(IndexOutOfBoundsException e3){
             e3.getMessage();
             System.out.println("Invalid coordinate!");
-            makeMove(gb);
+            makeMove(gb, coordinates);
+
         }finally{
             scan.close();
         }
+
+        return coordinates;
     }
-
 }
-
