@@ -100,6 +100,7 @@ public class Gameboard {
     }
     */
 
+    /*
     public void printBoardConsole(){
         //filled square -> \u25A0
         char unicode = '\u25A0';
@@ -117,4 +118,21 @@ public class Gameboard {
             System.out.println();
         }
     }
+    */
+
+    public void printBoardConsole(){
+        //filled square -> \u25A0
+        char unicode = '\u25A0';
+
+        for(int line = 0; line < length; line++){
+            for(int column = 0; column < length; column++){
+                if(spaces[line][column].isHidden()){
+                    unicode = '\u25A0';
+                }
+                System.out.print(unicode + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
