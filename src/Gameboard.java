@@ -106,11 +106,22 @@ public class Gameboard {
 
         for(int line = 0; line < length; line++){
             for(int column = 0; column < length; column++){
-                if(spaces[line][column].isHidden()){
+                if(spaces[line][column].hasBomb()){
+                    System.out.print(unicode + " ");
+                    continue;
+                }
+
+                if(spaces[line][column].getBombsNear() != 0){
+                    System.out.print(spaces[line][column].getBombsNear() + ' ');
+                    continue;
+
+                }else if(spaces[line][column].isHidden()){
                     unicode = '\u25A0';
+
                 }else{
                     unicode = ' ';
                 }
+
                 System.out.print(unicode + " ");
             }
             System.out.println();
