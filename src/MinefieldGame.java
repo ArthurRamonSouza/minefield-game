@@ -33,7 +33,8 @@ public class MinefieldGame {
         gb.printBoardConsole();
         makeMove(gb, coordinates);
         gb.showSpace(coordinates[0],coordinates[1]);
-        gb.printBoardConsole(); 
+        gb.printBoardConsole();
+        gameOver(gb);
 
     }
 
@@ -79,6 +80,7 @@ public class MinefieldGame {
             scan.close();
         }
 
+        bombsNear(gb, coordinates);
         return coordinates;
     }
 
@@ -98,6 +100,77 @@ public class MinefieldGame {
                 System.out.print(unicode + " ");
             }
             System.out.println();
+        }
+    }
+
+    public static void bombsNear(Gameboard gb,  int[] coordinates){
+        Space[][] spaces = gb.getSpaces();
+
+        // (x-1, y-1) (x-1, y) (x-1, y+1)
+        // (x, y-1) (x, y)   (x, y+1)
+        // (x+1, y-1) (x+1, y) (x+1, y+1)
+       
+        if(spaces[(coordinates[0]-1)][(coordinates[1]-1)].hasBomb()){
+            spaces[(coordinates[0]-1)][(coordinates[1])].addBombsNear();
+            spaces[(coordinates[0])][(coordinates[1]-1)].addBombsNear();
+        }else{
+            spaces[(coordinates[0]-1)][(coordinates[1]-1)].show();
+            spaces[(coordinates[0]-1)][(coordinates[1])].show();
+            spaces[(coordinates[0])][(coordinates[1]-1)].show();
+        }
+        
+        if(spaces[(coordinates[0]-1)][(coordinates[1])].hasBomb()){
+            spaces[(coordinates[0]-1)][(coordinates[1]-1)].addBombsNear();
+            spaces[(coordinates[0]-1)][(coordinates[1]+1)].addBombsNear();
+        } else{
+            spaces[(coordinates[0]-1)][(coordinates[1])].show();
+            spaces[(coordinates[0]-1)][(coordinates[1]-1)].show();
+            spaces[(coordinates[0]-1)][(coordinates[1]+1)].show();
+        }
+
+        if(spaces[(coordinates[0]-1)][(coordinates[1]+1)].hasBomb()){
+            spaces[(coordinates[0]-1)][(coordinates[1])].addBombsNear();
+            spaces[(coordinates[0])][(coordinates[1]+1)].addBombsNear();
+        }else{
+            spaces[(coordinates[0]-1)][(coordinates[1]+1)].show();
+            spaces[(coordinates[0]-1)][(coordinates[1])].show();
+            spaces[(coordinates[0])][(coordinates[1]+1)].show();
+        }
+
+        if(spaces[(coordinates[0])][(coordinates[1]-1)].hasBomb()){
+            spaces[(coordinates[0]-1)][(coordinates[1]-1)].addBombsNear();
+            spaces[(coordinates[0]+1)][(coordinates[1]-1)].addBombsNear();
+        }else{
+            spaces[(coordinates[0])][(coordinates[1]-1)].show();
+            spaces[(coordinates[0]-1)][(coordinates[1]-1)].show();
+            spaces[(coordinates[0]+1)][(coordinates[1]-1)].show();
+        }
+
+        if(spaces[(coordinates[0])][(coordinates[1]+1)].hasBomb()){
+            spaces[(coordinates[0]-1)][(coordinates[1]+1)].addBombsNear();
+            spaces[(coordinates[0]+1)][(coordinates[1]+1)].addBombsNear();
+        }else{
+            spaces[(coordinates[0])][(coordinates[1]+1)].show();
+            spaces[(coordinates[0]-1)][(coordinates[1]+1)].show();
+            spaces[(coordinates[0]+1)][(coordinates[1]+1)].show();
+        }
+
+        if(spaces[(coordinates[0]+1)][(coordinates[1]-1)].hasBomb()){
+            spaces[(coordinates[0])][(coordinates[1]-1)].addBombsNear();
+            spaces[(coordinates[0]+1)][(coordinates[1])].addBombsNear();
+        }else{
+            spaces[(coordinates[0]+1)][(coordinates[1]-1)].show();
+            spaces[(coordinates[0])][(coordinates[1]-1)].show();
+            spaces[(coordinates[0]+1)][(coordinates[1])].show();
+        }
+
+        if(spaces[(coordinates[0]+1)][(coordinates[1]+1)].hasBomb()){
+            spaces[(coordinates[0])][(coordinates[1]+1)].addBombsNear();
+            spaces[(coordinates[0]+1)][(coordinates[1])].addBombsNear();
+        }else{
+            spaces[(coordinates[0]+1)][(coordinates[1]+1)].show();
+            spaces[(coordinates[0])][(coordinates[1]+1)].show();
+            spaces[(coordinates[0]+1)][(coordinates[1])].show();
         }
     }
 }
