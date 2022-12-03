@@ -61,6 +61,12 @@ public class MinefieldGame {
                 System.out.printf("Invalid coordinate!\nThe minimum coordinate is (0,0) and the maximum is (%d,%d).\n", (gb.getLength()-1), (gb.getLength()-1));
                 makeMove(gb, coordinates);
             }
+            
+            //If the coordinate has bomb, game over!
+            Space[][] spaces = gb.getSpaces();
+            if(spaces[coordX][coordY].hasBomb()){
+                gameOver(gb);
+            }
 
             coordinates[0] = coordX;
             coordinates[1] = coordY;
