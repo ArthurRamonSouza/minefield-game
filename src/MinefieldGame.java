@@ -51,7 +51,7 @@ public class MinefieldGame {
             int coordY = Character.getNumericValue(strgCoordinates.codePointAt(3));
 
             //Negative number? Some inappropriate character was typed.
-            if((coordX < 0) || (coordY < 0)){
+            if((coordX <= 0) || (coordY <= 0)){
                 System.out.printf("Invalid coordinate!\nThe must be a positive number.\n");
                 makeMove(gb, coordinates);
             }
@@ -170,8 +170,8 @@ public class MinefieldGame {
             spaces[(coordinates[0]+1)][(coordinates[1])].show();
         }
 
-        if(spaces[(coordinates[0]+1)][(coordinates[1]+1)].hasBomb()){
-            spaces[(coordinates[0])][(coordinates[1]+1)].addBombsNear();
+        if(spaces[(coordinates[0]+1)][(coordinates[1])].hasBomb()){
+            spaces[(coordinates[0])][(coordinates[1])].addBombsNear();//here
             spaces[(coordinates[0]+1)][(coordinates[1])].addBombsNear();
         }else{
             spaces[(coordinates[0]+1)][(coordinates[1]+1)].show();
