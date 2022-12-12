@@ -53,6 +53,7 @@ public class Gameboard {
 	public void generateBomb() {
 		Random random = new Random();
 
+		// Random bombs coordinates
 		for (int i = 0; i < bombs.length; i++) {
 			bombs[i] = new Bomb((random.nextInt(0, length)), (random.nextInt(0, length)));
 		}
@@ -80,6 +81,7 @@ public class Gameboard {
 		settingBombsNear();
 	}
 
+	// If the space have bombs near, we will count it
 	private void settingBombsNear() {
 		for (int line = 0; line < length; line++) {
 			for (int column = 0; column < length; column++) {

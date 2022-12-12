@@ -9,8 +9,9 @@ import model.Space;
 
 public class Main {
 
-	static Gameboard gb = null;
+	// Class attributes 
 	static byte option = 0;
+	static Gameboard gb = null;
 	static short winCondition = 0;
 	static Space[][] spaces = null;
 	static boolean gameOver = false;
@@ -19,6 +20,8 @@ public class Main {
 	static Scanner scanOption = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		
+		// Menu loop condition
 		while (option != 2) {
 			System.out.println("Let's play the minefield game! Select one option bellow:");
 			System.out.print("1. Play \n2. Quit\n");
@@ -28,6 +31,7 @@ public class Main {
 
 				switch (option) {
 				case 1: {
+					// Choosing the game difficult
 					System.out.println("Chose the difficulty: ");
 					System.out.println("1. Easy");
 					System.out.println("2. Normal");
@@ -47,10 +51,12 @@ public class Main {
 						System.out.println("Invalid input.");
 						continue;
 					}
+
 					spaces = gb.getSpaces();
 					Thread.sleep(2000);
 					clearConsole();
 
+					// Game loop that ends if the player win or loose
 					while (!gameOver && !win(gb)) {
 						makeAMove(gb);
 						clearConsole();
@@ -58,6 +64,7 @@ public class Main {
 					continue;
 
 				}
+
 				case 2: {
 					System.out.println("Closing the game.");
 					Thread.sleep(2000);
@@ -78,7 +85,6 @@ public class Main {
 			}
 		}
 		scan.close();
-
 	}
 
 	// Getting and storing the user input
@@ -248,6 +254,7 @@ public class Main {
 		return gameOver = true;
 	}
 
+	// What the user needs to win the game
 	public static boolean win(Gameboard gb) {
 		int win = (gb.getLength() * gb.getLength()) - gb.getBombs().length;
 		if (winCondition == win) {
@@ -256,6 +263,7 @@ public class Main {
 		return false;
 	}
 
+	// Method to clear the console based on the player OS
 	public final static void clearConsole() {
 		try {
 			final String os = System.getProperty("os.name");
