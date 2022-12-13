@@ -1,5 +1,6 @@
 package main;
 
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import model.Space;
 
 public class Main {
 
-	// Class attributes 
+	// Class attributes
 	static byte option = 0;
 	static Gameboard gb = null;
 	static short winCondition = 0;
@@ -20,13 +21,16 @@ public class Main {
 	static Scanner scanOption = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
+
 		// Menu loop condition
 		while (option != 2) {
-			System.out.println("Let's play the minefield game! Select one option bellow:");
-			System.out.print("1. Play \n2. Quit\n");
 
 			try {
+				Thread.sleep(2000);
+				clearConsole();
+				System.out.println("Let's play the minefield game! Select one option bellow:");
+				System.out.print("1. Play \n2. Quit\n");
+
 				option = scanOption.nextByte();
 
 				switch (option) {
@@ -36,6 +40,8 @@ public class Main {
 					System.out.println("1. Easy");
 					System.out.println("2. Normal");
 					System.out.println("3. Hard");
+					System.out.println("4. Custom");
+
 					option = scanOption.nextByte();
 
 					if (option == 1) {
@@ -46,6 +52,15 @@ public class Main {
 
 					} else if (option == 3) {
 						gb = new Gameboard(Difficulty.HARD);
+
+					} else if (option == 4) {
+						System.out.print(
+								"Enter the length of the game board, it must be a number greater than 3 and less than or equal to 20: ");
+						option = scanOption.nextByte();
+						if (option > 3 && option <= 20) {
+							gb = new Gameboard(option);
+							System.out.println("");
+						}
 
 					} else {
 						System.out.println("Invalid input.");
@@ -62,14 +77,12 @@ public class Main {
 						clearConsole();
 					}
 					continue;
-
 				}
 
 				case 2: {
 					System.out.println("Closing the game.");
 					Thread.sleep(2000);
 					break;
-
 				}
 
 				default: {
@@ -78,10 +91,14 @@ public class Main {
 					clearConsole();
 				}
 				}
-			} catch (Error e) {
+			} catch (InputMismatchException e) {
 				System.out.println("Sorry your input is not correct! Try again.");
+				scanOption.nextLine();
+				continue;
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				break;
 			}
 		}
 		scan.close();
@@ -133,6 +150,8 @@ public class Main {
 		} catch (IllegalStateException e2) {
 			e2.getMessage();
 
+		} catch (StringIndexOutOfBoundsException e) {
+			System.out.println("Invalid coordinate!");
 		}
 
 		return coordinates;

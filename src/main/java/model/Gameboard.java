@@ -14,6 +14,22 @@ public class Gameboard {
 	// This array will contain the coordinates of the bombs
 	private Bomb[] bombs = new Bomb[10];
 
+	public Gameboard(int custom) {
+		spaces = new Space[custom][custom];
+		length = custom;
+
+		// Initializing the spaces in the board
+		for (int i = 0; i < length; i++) {
+			for (int j = 0; j < length; j++) {
+				spaces[i][j] = new Space();
+				;
+			}
+		}
+		
+		generateBomb();
+		printBoardConsole();
+	}
+
 	public Gameboard(Difficulty dificulty) {
 		if (Difficulty.EASY == dificulty) {
 			spaces = new Space[8][8];
@@ -87,7 +103,7 @@ public class Gameboard {
 			for (int column = 0; column < length; column++) {
 				if (spaces[line][column].hasBomb()) {
 					// (x-1,y-1) (x-1,y) (x-1,y+1)
-					// (x,y-1)   (x,y)   (x, y+1)
+					// (x,y-1) (x,y) (x, y+1)
 					// (x+1,y-1) (x+1,y) (x+1,y+1)
 
 					if ((line - 1) >= 0 && (column - 1) >= 0) {
@@ -136,11 +152,11 @@ public class Gameboard {
 				} else if (spaces[line][column].isHidden()) {
 					System.out.print("\u25A0 ");
 
-				} else if(!spaces[line][column].isHidden()) {
+				} else if (!spaces[line][column].isHidden()) {
 					if (spaces[line][column].getBombsNear() != 0) {
 						System.out.print(spaces[line][column].getBombsNear() + " ");
 					} else {
-					System.out.print("  ");
+						System.out.print("  ");
 					}
 				}
 			}
