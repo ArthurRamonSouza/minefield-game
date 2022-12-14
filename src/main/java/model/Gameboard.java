@@ -73,14 +73,16 @@ public class Gameboard {
 		// APAGAR
 		for(int i = 0; i < length; i++) {
 			for(int j = 0; j < length; j++) {
-				spacesJB[i][j] = new JButtonSpace();
+				short[] coordinates = {(short)j, (short)i};
+				spacesJB[i][j] = new JButtonSpace(coordinates, this);
 				System.out.println(spacesJB[i][j].getSpace());
 			}
 		}
 		
 		for(int i = 0; i < length; i++) {
 			for(int j = 0; j < length; j++) {
-				spacesJB[i][j] = new JButtonSpace();
+				short[] coordinates = {(short)j, (short)i};
+				spacesJB[i][j] = new JButtonSpace(coordinates, this);
 				this.spaces[i][j] = spacesJB[i][j].getSpace();
 			}
 		}

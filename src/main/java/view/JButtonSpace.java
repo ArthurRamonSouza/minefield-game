@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
+import model.Gameboard;
 import model.Space;
 
 // JBUtton extends an abstract class called AbstractButton
@@ -15,12 +17,16 @@ public class JButtonSpace extends JButton {
 
 	private int line;
 	private int column;
+	private short[] coordinates;
+	private static Gameboard gb;
 	private Space space = new Space();
 
-	public JButtonSpace() {
+	public JButtonSpace(short[] coordinates, Gameboard gb) {
+		this.gb = gb;
+		this.coordinates = coordinates;
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				onClick(e);
+				onClick(e, JButtonSpace.this.coordinates);
 			}
 		});
 	}
@@ -37,7 +43,7 @@ public class JButtonSpace extends JButton {
 		this.line = line;
 		this.column = column;
 	}
-	
+
 	public Space getSpace() {
 		return space;
 	}
@@ -46,11 +52,39 @@ public class JButtonSpace extends JButton {
 		this.space = space;
 	}
 
-	public void onClick(ActionEvent e) {
-		this.space.show();
-		System.out.println("(Line: " + column + ", Column: " + line + ")");
-		System.out.println("Space is hidden? " + this.space.isHidden());
+	// This method will show the space
+	public void show() {
+		if (this.space.hasBomb()) {
+			this.setText("x");
 
+		} else {
+			this.getSpace().show();
+			if (this.space.getBombsNear() != 0) {
+				this.setText(Integer.toString(this.space.getBombsNear()));
+
+			} else {
+				this.setText(" ");
+			}
+
+		}
+		this.setEnabled(false);
 	}
 
+	public void onClick(ActionEvent e, short[] coordinates) {
+		
+		coordinates[0] = (short) line;
+		coordinates[1] = (short) column;
+		JFrameGameboard.showArea();
+		
+		// Condition for the game to continue
+		int win = (gb.getLength() * gb.getLength()) - gb.getBombs().length;
+		System.out.println(win);
+		System.out.println(JFrameGameboard.getWinCondition());
+		if (JFrameGameboard.getWinCondition() == win) {
+			JFrameGameboard.win(gb);
+		}
+		if(space.hasBomb()) {
+			JFrameGameboard.gameOver(gb);
+		}
+	}
 }

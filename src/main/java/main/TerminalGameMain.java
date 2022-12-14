@@ -269,6 +269,8 @@ public class TerminalGameMain {
 	public static boolean win(Gameboard gb) {
 		int win = (gb.getLength() * gb.getLength()) - gb.getBombs().length;
 		if (winCondition == win) {
+			System.out.println("You win.");
+			System.out.println();
 			return true;
 		}
 		return false;
