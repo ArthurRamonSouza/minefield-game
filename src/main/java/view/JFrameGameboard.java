@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -22,8 +21,8 @@ public class JFrameGameboard extends JFrame {
 	private byte buttonSize = 50;
 	private static byte option = 0;
 	private static Scanner scanOption = new Scanner(System.in);
-	private Gameboard gb = new Gameboard(Difficulty.NORMAL);// null
-	private JButtonSpace[][] spaces = new JButtonSpace[gb.getLength()][gb.getLength()];
+	private static Gameboard gb = null;
+	private static JButtonSpace[][] spaces;
 
 	/**
 	 * Launch the application. later we will delete the main method and just call
@@ -48,7 +47,41 @@ public class JFrameGameboard extends JFrame {
 			}
 			
 			case 2: {
+				
+				// Choosing the game difficult
+				System.out.println("Chose the difficulty: ");
+				System.out.println("1. Easy");
+				System.out.println("2. Normal");
+				System.out.println("3. Hard");
 
+				option = scanOption.nextByte();
+
+				if (option == 1) {
+					gb = new Gameboard(Difficulty.EASY);
+
+				} else if (option == 2) {
+					gb = new Gameboard(Difficulty.NORMAL);
+
+				} else if (option == 3) {
+					gb = new Gameboard(Difficulty.HARD);
+
+				} else {
+					System.out.println("Invalid input.");
+					continue;
+				}
+				
+				// Initializing the spaces array
+				
+				spaces = new JButtonSpace[gb.getLength()][gb.getLength()];
+				
+				// And the array objects
+				for(int i = 0; i < gb.getLength(); i++) {
+					for(int j = 0; j < gb.getLength(); j++) {
+						spaces[i][j] = new JButtonSpace();
+						spaces[i][j].setSpace(gb.getSpaces()[i][j]);
+					}
+				}
+				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -89,7 +122,6 @@ public class JFrameGameboard extends JFrame {
 		int i = 0;
 		for (int column = 0; column < gb.getLength(); column++) {
 			for (int line = 0; line < gb.getLength(); line++) {
-				spaces[line][column] = new JButtonSpace();
 				spaces[line][column].setPosition(line, column);
 				spaces[line][column].setSize(buttonSize, buttonSize);
 				spaces[line][column].setLocation(buttonSize * line, buttonSize * column);

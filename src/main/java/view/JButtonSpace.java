@@ -12,13 +12,12 @@ import model.Space;
 public class JButtonSpace extends JButton {
 
 	private static final long serialVersionUID = 1L;
+
 	private int line;
 	private int column;
-	private Space space;
-	
+	private Space space = new Space();
+
 	public JButtonSpace() {
-		space = new Space();
-		
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				onClick(e);
@@ -37,6 +36,14 @@ public class JButtonSpace extends JButton {
 	public void setPosition(int line, int column) {
 		this.line = line;
 		this.column = column;
+	}
+	
+	public Space getSpace() {
+		return space;
+	}
+
+	public void setSpace(Space space) {
+		this.space = space;
 	}
 
 	public void onClick(ActionEvent e) {

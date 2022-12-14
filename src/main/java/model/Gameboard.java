@@ -2,6 +2,8 @@ package model;
 
 import java.util.Random;
 
+import view.JButtonSpace;
+
 public class Gameboard {
 
 	// This array multidimensional represents the spaces on the gameboard.
@@ -14,6 +16,7 @@ public class Gameboard {
 	// This array will contain the coordinates of the bombs
 	private Bomb[] bombs = new Bomb[10];
 
+	// To use in the terminal version
 	public Gameboard(int custom) {
 		spaces = new Space[custom][custom];
 		length = custom;
@@ -22,14 +25,13 @@ public class Gameboard {
 		for (int i = 0; i < length; i++) {
 			for (int j = 0; j < length; j++) {
 				spaces[i][j] = new Space();
-				;
 			}
 		}
-		
 		generateBomb();
 		printBoardConsole();
 	}
-
+	
+	// To use in the terminal version
 	public Gameboard(Difficulty dificulty) {
 		if (Difficulty.EASY == dificulty) {
 			spaces = new Space[8][8];
@@ -46,7 +48,40 @@ public class Gameboard {
 		for (int i = 0; i < length; i++) {
 			for (int j = 0; j < length; j++) {
 				spaces[i][j] = new Space();
-				;
+			}
+		}
+		generateBomb();
+		printBoardConsole();
+	}
+	
+	// To use in the GUI version
+	public Gameboard(Difficulty dificulty, JButtonSpace[][] spacesJB) {
+		
+		if (Difficulty.EASY == dificulty) {
+			this.spaces = new Space[8][8];
+			length = 8;
+		} else if (Difficulty.NORMAL == dificulty) {
+			this.spaces = new Space[9][9];
+			length = 9;
+		} else if (Difficulty.HARD == dificulty) {
+			this.spaces = new Space[10][10];
+			length = 10;
+		}
+		
+		spacesJB = new JButtonSpace[length][length];
+		
+		// APAGAR
+		for(int i = 0; i < length; i++) {
+			for(int j = 0; j < length; j++) {
+				spacesJB[i][j] = new JButtonSpace();
+				System.out.println(spacesJB[i][j].getSpace());
+			}
+		}
+		
+		for(int i = 0; i < length; i++) {
+			for(int j = 0; j < length; j++) {
+				spacesJB[i][j] = new JButtonSpace();
+				this.spaces[i][j] = spacesJB[i][j].getSpace();
 			}
 		}
 
