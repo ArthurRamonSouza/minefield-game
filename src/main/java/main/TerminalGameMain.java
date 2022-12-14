@@ -8,7 +8,7 @@ import model.Difficulty;
 import model.Gameboard;
 import model.Space;
 
-public class Main {
+public class TerminalGameMain {
 
 	// Class attributes
 	static byte option = 0;
@@ -81,7 +81,6 @@ public class Main {
 
 				case 2: {
 					System.out.println("Closing the game.");
-					Thread.sleep(2000);
 					break;
 				}
 
@@ -91,7 +90,7 @@ public class Main {
 					clearConsole();
 				}
 				}
-			} catch (InputMismatchException e) {
+			} catch (RuntimeException e) {
 				System.out.println("Sorry your input is not correct! Try again.");
 				scanOption.nextLine();
 				continue;
@@ -144,14 +143,9 @@ public class Main {
 				}
 			}
 
-		} catch (NoSuchElementException e1) {
-			e1.getMessage();
-
-		} catch (IllegalStateException e2) {
-			e2.getMessage();
-
-		} catch (StringIndexOutOfBoundsException e) {
+		} catch (RuntimeException e) {
 			System.out.println("Invalid coordinate!");
+			scan.nextLine();
 		}
 
 		return coordinates;
