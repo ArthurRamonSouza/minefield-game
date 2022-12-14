@@ -1,0 +1,149 @@
+[33mcommit fb4980b9cde86bf7a30718f3b883918b2fe66448[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mVscode/staging[m[33m, [m[1;31mVscode/master[m[33m, [m[1;32mstaging[m[33m)[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Wed Dec 14 20:00:13 2022 -0300
+
+    Deleting branch test.
+
+[33mcommit 03f2c7f8b32e884c99e1f950a3e5039fcef4d60f[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Wed Dec 14 19:58:03 2022 -0300
+
+    Updating the branch.
+
+[33mcommit a211800d15c3a70e6cacdba2a5f1a474e7074895[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Wed Dec 14 19:44:22 2022 -0300
+
+    Updating the branch.
+
+[33mcommit 505aef07805a1cce7b8824cb41434d7ac283f3b1[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 8 17:37:06 2022 -0300
+
+    makeMove method was modified.
+
+[33mcommit 621260f7247eb73ffe45930f1f597d1230f1add6[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Sat Dec 3 13:15:04 2022 -0300
+
+    If the coordinate has bomb, game over.
+
+[33mcommit 5d5aad0d2f0614b6b1f670f17c31e4b1a3af199f[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Sat Dec 3 13:08:55 2022 -0300
+
+    Updating the printBoardConsole.
+
+[33mcommit 2d551cb366802608f68b0b06001166496a30ce7a[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Sat Dec 3 13:07:57 2022 -0300
+
+    Creating the method to calculate the bombs near.
+
+[33mcommit c13db21a053687e69a352787f8c530f872eff17c[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Sat Dec 3 13:07:16 2022 -0300
+
+    New attribute to count the number of bombs near.
+
+[33mcommit 1709293dce437a3ee07d1f0b8f679f6a22274bdd[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 23:21:21 2022 -0300
+
+    Created the gameOver method & makeMove was fixed.
+
+[33mcommit 8dce4b7e4be9bf1bf7a3cab76e1dac7f4d7c9867[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 23:19:39 2022 -0300
+
+    The printBoardConsole became the gameOver method.
+
+[33mcommit 363bcd62ea826d0136752d5656f386394235b240[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 14:21:25 2022 -0300
+
+    Fixed a bug in makeMove method.
+
+[33mcommit 24f74b807a17e6be0ed2dae04bdbcd018defac5c[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 14:20:19 2022 -0300
+
+    New method to switch space property named hidden.
+
+[33mcommit 94af7a05d9aa4dfd5645ba2c84fef501bcec9779[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 13:19:00 2022 -0300
+
+    Method to get user movement.
+
+[33mcommit 26dc69c6297efcb6f70ccb09d4a225043774a801[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 13:17:44 2022 -0300
+
+    Commenting some code.
+
+[33mcommit 4ddc796bc0dc81bf4448fc8a6de85fa8290dd131[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 13:16:19 2022 -0300
+
+    Renaming the Main to MinefieldGame.
+
+[33mcommit a89f615fb4c0fba432e646d77ee8ff6f8ed7db68[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Fri Dec 2 00:51:29 2022 -0300
+
+    Method printBoard Console was fixed.
+
+[33mcommit 5bcbd0216b408698c2c24cbce5802e60dc53d12b[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 19:32:59 2022 -0300
+
+    Some tests code to QA.
+
+[33mcommit 3e5887badd3471d5c1d86600c3716d67aa2c884d[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 19:32:31 2022 -0300
+
+    Paramter 'bound' of random was altered and fixes.
+
+[33mcommit 747f924423f2b86506ded751bd9153f1e1f8a3d8[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 15:04:25 2022 -0300
+
+    Testing new method.
+
+[33mcommit 26d579b2552b3c27ee87991a7c9e12fc9d467859[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 15:04:06 2022 -0300
+
+    Errors fixed, new method and comments.
+
+[33mcommit 177d88ad84344e5cf7898389f9b267ea6cbd88de[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 12:33:45 2022 -0300
+
+    Changing the bomb struct.
+
+[33mcommit 9d80ea7386bd70ed4b2a21ff61d9e06a9f9da056[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 12:23:29 2022 -0300
+
+    Getters and setters renamed.
+
+[33mcommit c74430a1662b9d995f6fda771a0266c61d3f0bed[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Thu Dec 1 12:13:58 2022 -0300
+
+    Created the new class Bomb
+
+[33mcommit f6c7066297c2c290fa7c56843b15fb4c72792f45[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Wed Nov 30 10:11:24 2022 -0300
+
+    Adding classes already created.
+
+[33mcommit 0d23564bafddcb58c9c996745cfdf4aa4f47c33a[m
+Author: Arthur Ramon Souza <arthuramon.souza93@hotmail.com>
+Date:   Wed Nov 30 10:08:29 2022 -0300
+
+    Creating README.md file
