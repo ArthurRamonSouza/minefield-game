@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -35,7 +36,6 @@ public class JFrameGameboard extends JFrame {
 	public static void main(String[] args) {
 
 		while (option != 3) {
-			TerminalGameMain.clearConsole();
 			System.out.println("Do you want play in the terminal or with a GUI?");
 			System.out.println("1. Terminal\n2. GUI\n3. Quit");
 			try {
@@ -242,6 +242,7 @@ public class JFrameGameboard extends JFrame {
 	public static void gameOver(Gameboard gb) {
 		System.out.println("You lose.");
 		System.out.println();
+		JOptionPane.showMessageDialog(null, "You lose!");
 
 		for (int line = 0; line < gb.getLength(); line++) {
 			for (int column = 0; column < gb.getLength(); column++) {
@@ -255,6 +256,8 @@ public class JFrameGameboard extends JFrame {
 	public static void win(Gameboard gb) {
 		System.out.println("You win.");
 		System.out.println();
+		JOptionPane.showMessageDialog(null, "You win!");
+		
 		for (int line = 0; line < gb.getLength(); line++) {
 			for (int column = 0; column < gb.getLength(); column++) {
 				spaces[line][column].setEnabled(false);;

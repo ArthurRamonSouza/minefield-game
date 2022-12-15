@@ -183,6 +183,9 @@ public class Gameboard {
 	public void printBoardConsole() {
 		for (int line = 0; line < length; line++) {
 			for (int column = 0; column < length; column++) {
+				if(column == 0) {
+					System.out.print("\t\t");
+				}
 				if (spaces[line][column].hasBomb()) {
 					// filled square -> \u25A0
 					System.out.print("\u25A0 ");
@@ -199,6 +202,7 @@ public class Gameboard {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	// Switch the property hidden if the space is hidden

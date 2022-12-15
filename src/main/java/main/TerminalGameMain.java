@@ -9,7 +9,8 @@ import model.Space;
 public class TerminalGameMain {
 
 	// Class attributes
-	static byte option = 0;
+	static byte option = 1;
+	static boolean loop;
 	static Gameboard gb = null;
 	static short winCondition = 0;
 	static Space[][] spaces = null;
@@ -21,92 +22,119 @@ public class TerminalGameMain {
 	public static void main(String[] args) {
 
 		// Menu loop condition
-		while (option != 2) {
-
+		loop = true;
+		while (loop) {
+			// Reseting the attributes
+			winCondition = 0;
+			gameOver = false;
+			
 			try {
-				Thread.sleep(2000);
-				clearConsole();
-				System.out.println("Let's play the minefield game! Select one option bellow:");
-				System.out.print("1. Play \n2. Quit\n");
+				System.out.println("\tLET'S PLAY THE MINEFIELD GAME!\t");
+				System.out.println("\t If you want to quit, type 0.	\t\n");
+				
+				// Choosing the game difficult
+				System.out.println("\tChose the difficulty: ");
+				System.out.println("\t 1. Easy");
+				System.out.println("\t 2. Normal");
+				System.out.println("\t 3. Hard");
+				System.out.println("\t 4. Custom");
+				System.out.print("\t ");
 
 				option = scanOption.nextByte();
+				System.out.println();
 
+				// Starting the game board;
 				switch (option) {
-				case 1: {
-					// Choosing the game difficult
-					System.out.println("Chose the difficulty: ");
-					System.out.println("1. Easy");
-					System.out.println("2. Normal");
-					System.out.println("3. Hard");
-					System.out.println("4. Custom");
-
-					option = scanOption.nextByte();
-
-					if (option == 1) {
-						gb = new Gameboard(Difficulty.EASY);
-
-					} else if (option == 2) {
-						gb = new Gameboard(Difficulty.NORMAL);
-
-					} else if (option == 3) {
-						gb = new Gameboard(Difficulty.HARD);
-
-					} else if (option == 4) {
-						System.out.print(
-								"Enter the length of the game board, it must be a number greater than 3 and less than or equal to 20: ");
-						option = scanOption.nextByte();
-						if (option > 3 && option <= 20) {
-							gb = new Gameboard(option);
-							System.out.println("");
-						}
-
-					} else {
-						System.out.println("Invalid input.");
-						continue;
+				case 0: {
+					if (option == 0) {
+						System.out.println("\tGame closed.");
+						loop = false;
+						break;
 					}
+				}
 
+				case 1: {
+					gb = new Gameboard(Difficulty.EASY);
+					
 					spaces = gb.getSpaces();
-					Thread.sleep(2000);
-					clearConsole();
-
 					// Game loop that ends if the player win or loose
 					while (!gameOver && !win(gb)) {
 						makeAMove(gb);
-						clearConsole();
 					}
 					continue;
 				}
 
 				case 2: {
-					System.out.println("Closing the game.");
-					break;
+					gb = new Gameboard(Difficulty.NORMAL);
+					
+					spaces = gb.getSpaces();
+					// Game loop that ends if the player win or loose
+					while (!gameOver && !win(gb)) {
+						makeAMove(gb);
+					}
+					continue;
+				}
+
+				case 3: {
+					gb = new Gameboard(Difficulty.HARD);
+					spaces = gb.getSpaces();
+					
+					// Game loop that ends if the player win or loose
+					while (!gameOver && !win(gb)) {
+						makeAMove(gb);
+					}
+					continue;
+				}
+
+				case 4: {
+					System.out.print("\tEnter the length of the game board,"
+							+ "it must be a number greater than 3 and less than or equal to 20: ");
+
+					option = scanOption.nextByte();
+					System.out.println("");
+
+					if (option == 0) {
+						System.out.println("Game closed.");
+						loop = false;
+						break;
+
+					} else if (option > 3 && option <= 20) {
+						gb = new Gameboard(option);
+						System.out.println("");
+						
+						spaces = gb.getSpaces();
+						// Game loop that ends if the player win or loose
+						while (!gameOver && !win(gb)) {
+							makeAMove(gb);
+						}
+					}
+					continue;
 				}
 
 				default: {
-					System.out.println("Your input is invalid! Try again.");
-					Thread.sleep(2000);
-					clearConsole();
+					System.out.println("\tYour input is invalid! Try again.");
 				}
 				}
+				
 			} catch (RuntimeException e) {
-				System.out.println("Sorry your input is not correct! Try again.");
+				System.out.println("\tSorry your input is not correct! Try again.");
 				scanOption.nextLine();
 				continue;
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				break;
 			}
 		}
-		scan.close();
+
 	}
 
 	// Getting and storing the user input
 	public static int[] makeAMove(Gameboard gb) {
-		System.out.print("Type the coordinate that you want to verify, like (x,y): ");
+		System.out.print("\tType the coordinate that you want to verify, like (x,y): ");
 
 		try {
 			String strgCoordinates = scan.nextLine();
+			if(Character.getNumericValue(strgCoordinates.codePointAt(0)) == 0) {
+				gameOver = true;
+				System.out.println("Game closed.");
+			}
 
 			// Parsing cahr to int
 			int coordX = Character.getNumericValue(strgCoordinates.codePointAt(1));
@@ -119,7 +147,7 @@ public class TerminalGameMain {
 			// Some inappropriate character or possibles invalid coordinates will be treat
 			// here.
 			if ((coordX < 0) || (coordY < 0) || (coordX >= gb.getLength() || coordY >= gb.getLength())) {
-				System.out.printf("Invalid coordinate!\nThe minimum coordinate is (1,1) and the maximum is (%d,%d).\n",
+				System.out.printf("\tInvalid coordinate!\nThe minimum coordinate is (1,1) and the maximum is (%d,%d).\n",
 						gb.getLength(), gb.getLength());
 				makeAMove(gb);
 			}
@@ -130,7 +158,7 @@ public class TerminalGameMain {
 			} else {
 
 				if (!spaces[coordX][coordY].isHidden()) {
-					System.out.println("This space is not hidden.");
+					System.out.println("\tThis space is not hidden.");
 					makeAMove(gb);
 
 				} else {
@@ -142,7 +170,7 @@ public class TerminalGameMain {
 			}
 
 		} catch (RuntimeException e) {
-			System.out.println("Invalid coordinate!");
+			System.out.println("\tInvalid coordinate!");
 			scan.nextLine();
 		}
 
@@ -247,21 +275,32 @@ public class TerminalGameMain {
 
 	// Shows on the board all the bombs in the game.
 	public static boolean gameOver(Gameboard gb) {
-		System.out.println("You lose.");
+		System.out.println();
+		System.out.println("\tYou lose.");
 		System.out.println();
 
 		for (int line = 0; line < gb.getLength(); line++) {
 			for (int column = 0; column < gb.getLength(); column++) {
+				
+				if(column == 0) {
+					System.out.print("\t\t|");
+				}
+				
 				if (gb.getSpaces()[line][column].hasBomb()) {
 					System.out.print("X ");
+					
 				} else {
 					System.out.print("  ");
 				}
+				
+				if(column == (gb.getLength() - 1)){
+					System.out.print("|");
+				}
 			}
 			System.out.println();
-			System.out.println();
-
 		}
+		
+		System.out.println();
 		return gameOver = true;
 	}
 
@@ -269,25 +308,10 @@ public class TerminalGameMain {
 	public static boolean win(Gameboard gb) {
 		int win = (gb.getLength() * gb.getLength()) - gb.getBombs().length;
 		if (winCondition == win) {
-			System.out.println("You win.");
+			System.out.println("\tYou win.");
 			System.out.println();
 			return true;
 		}
 		return false;
-	}
-
-	// Method to clear the console based on the player OS
-	public final static void clearConsole() {
-		try {
-			final String os = System.getProperty("os.name");
-
-			if (os.contains("Windows")) {
-				Runtime.getRuntime().exec("cls");
-			} else {
-				Runtime.getRuntime().exec("clear");
-			}
-		} catch (final Exception e) {
-			// Handle any exceptions.
-		}
 	}
 }
