@@ -77,8 +77,6 @@ public class JButtonSpace extends JButton {
 		
 		// Condition for the game to continue
 		int win = (gamebBoard.getLength() * gamebBoard.getLength()) - gamebBoard.getBombs().length;
-		System.out.println(win);
-		System.out.println(JFrameGameboard.getWinCondition());
 		if (JFrameGameboard.getWinCondition() == win) {
 			JFrameGameboard.win(gamebBoard);
 		}
