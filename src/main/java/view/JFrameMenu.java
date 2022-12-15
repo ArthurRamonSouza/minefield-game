@@ -15,6 +15,8 @@ import model.Difficulty;
 
 public class JFrameMenu extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	protected Difficulty difficulty = Difficulty.EASY;
 

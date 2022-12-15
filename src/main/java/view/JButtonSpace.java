@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import model.Gameboard;
 import model.Space;
@@ -18,11 +17,11 @@ public class JButtonSpace extends JButton {
 	private int line;
 	private int column;
 	private short[] coordinates;
-	private static Gameboard gb;
+	private static Gameboard gamebBoard;
 	private Space space = new Space();
 
 	public JButtonSpace(short[] coordinates, Gameboard gb) {
-		this.gb = gb;
+		gamebBoard = gb;
 		this.coordinates = coordinates;
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,12 +76,14 @@ public class JButtonSpace extends JButton {
 		JFrameGameboard.showArea();
 		
 		// Condition for the game to continue
-		int win = (gb.getLength() * gb.getLength()) - gb.getBombs().length;
+		int win = (gamebBoard.getLength() * gamebBoard.getLength()) - gamebBoard.getBombs().length;
+		System.out.println(win);
+		System.out.println(JFrameGameboard.getWinCondition());
 		if (JFrameGameboard.getWinCondition() == win) {
-			JFrameGameboard.win(gb);
+			JFrameGameboard.win(gamebBoard);
 		}
 		if(space.hasBomb()) {
-			JFrameGameboard.gameOver(gb);
+			JFrameGameboard.gameOver(gamebBoard);
 		}
 	}
 }

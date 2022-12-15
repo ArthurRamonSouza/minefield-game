@@ -1,14 +1,10 @@
 package view;
 
 import java.awt.EventQueue;
-import java.util.Scanner;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import main.TerminalGameMain;
 import model.Difficulty;
 import model.Gameboard;
 
@@ -31,6 +27,23 @@ public class JFrameGameboard extends JFrame {
 	 * the class constructor in our Main class
 	 */
 	public static void main(String[] args, Difficulty difficulty) {
+
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException ex) {
+			System.err.println(ex);
+		} catch (InstantiationException ex) {
+			System.err.println(ex);
+		} catch (IllegalAccessException ex) {
+			System.err.println(ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			System.err.println(ex);
+		}
 
 		gb = new Gameboard(difficulty);
 
@@ -62,6 +75,7 @@ public class JFrameGameboard extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameGameboard() {
+		winCondition = 0;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -195,7 +209,7 @@ public class JFrameGameboard extends JFrame {
 		}
 	}
 
-	// What the user needs to win the game
+	// When the user win the game
 	public static void win(Gameboard gb) {
 		System.out.println("You win.");
 		System.out.println();
@@ -204,7 +218,7 @@ public class JFrameGameboard extends JFrame {
 		for (int line = 0; line < gb.getLength(); line++) {
 			for (int column = 0; column < gb.getLength(); column++) {
 				spaces[line][column].setEnabled(false);
-				;
+				
 			}
 			System.out.println();
 		}
