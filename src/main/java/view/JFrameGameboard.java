@@ -217,6 +217,7 @@ public class JFrameGameboard extends JFrame {
 
 		for (int line = 0; line < gb.getLength(); line++) {
 			for (int column = 0; column < gb.getLength(); column++) {
+				spaces[line][column].show();
 				spaces[line][column].setEnabled(false);
 				
 			}
