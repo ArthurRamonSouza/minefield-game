@@ -90,3 +90,8 @@ porém após um tempo de estudo, este obstáculo foi superado. </p>
 “Aprendi a programar orientado a objeto, logo estou mais familiarizado com os conceitos. Uma solução para o problema já vem na minha cabeça, estruturada o máximo 
 possível em classes, seguindo os conceitos da POO. Como feedback da disciplina, apesar de ter tido um contato reduzido devido ao período que participei do projeto 
 Hackatruck, gostei bastante da metodologia da professora e, obviamente, da linguagem utilizada. ” [Arthur Ramón](https://github.com/ArthurRamonSouza)
+
+“Já conhecia alguns conceitos de programação orientado a objetos mas nunca tinha programado de fato com ela, a disciplina me ajudou a tentar estruturar mais os problemas para encaixá-los no POO. Como feedback da disciplina, gostei bastante de como a professora trouxe aulas dinâmicas e sempre tentando deixar o conteúdo mais leve e interessante para nós. Porém acho que a primeira parte da cadeira foi muito extensa e poderia ser reduzida, pelo fato dos alunos acabarem de sair de Introdução a Programação, acho que a parte da sintaxe do Java poderia ser passada de forma mais rápida para focar ainda mais no POO. Fora isso, não deixou nada a desejar.” - Davi Baratto
+	
+‘’Nunca tinha programado antes seguindo os conceitos da programação orientada a objeto, mas esta cadeira me proporcionou o conhecimento necessário para começar a desenvolver utilizando poo. A didática foi boa, me mantendo instigado para aprender esses conhecimentos que são muito utilizados no mercado de trabalho. Como sugestão para melhorias, acho que a parte inicial da cadeira poderia ser um pouco mais resumida, já que muitos dos conceitos os alunos já viram na cadeira de introdução a programação.’’ - Gabriel Dantas 
+
