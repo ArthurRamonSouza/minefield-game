@@ -75,13 +75,14 @@ public class JFrameGameboard extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameGameboard() {
+		setResizable(false);
 		winCondition = 0;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setSize(buttonSize * (gb.getLength() + 1), buttonSize * (gb.getLength() + 1));
+		this.setSize((buttonSize * gb.getLength()+15), (buttonSize * gb.getLength())+40);
 
 		for (int column = 0; column < gb.getLength(); column++) {
 			for (int line = 0; line < gb.getLength(); line++) {
